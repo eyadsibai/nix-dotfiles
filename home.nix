@@ -75,6 +75,15 @@
     pkgs.cointop
     pkgs.lazygit
     pkgs.pdfgrep
+    pkgs.terminal-parrot
+    pkgs.qutebrowser
+    pkgs.signal-desktop
+    pkgs.neomutt
+    pkgs.discord
+    pkgs.cmus
+    pkgs.termite
+    pkgs.feh
+    pkgs.git-crypt
   ];
 
   programs.vscode.enable = true;
