@@ -46,6 +46,35 @@
     pkgs.ncmpcpp
     pkgs.mopidy
     pkgs.mopidy-spotify
+    pkgs.alacritty
+    pkgs.nnn
+    pkgs.zathura
+    pkgs.pdftk
+    pkgs.unzip
+    pkgs.unrar
+    pkgs.fzf
+    pkgs.gtop
+    pkgs.gotop
+    pkgs.fff
+    pkgs.mpc_cli
+    pkgs.nitrogen
+    pkgs.sxhkd
+    pkgs.ncpamixer
+    pkgs.pavucontrol
+    pkgs.pulseaudio
+    pkgs.pulseaudio-ctl
+    pkgs.mc
+    pkgs.steam
+    pkgs.screenkey
+    pkgs.pywal
+    pkgs.wpgtk
+    pkgs.polybar
+    pkgs.screenkey
+    pkgs.bitwarden
+    pkgs.oh-my-zsh
+    pkgs.cointop
+    pkgs.lazygit
+    pkgs.pdfgrep
   ];
 
   programs.vscode.enable = true;
