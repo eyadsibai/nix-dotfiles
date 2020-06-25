@@ -2,15 +2,8 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{lib, config, pkgs, ... }:
+{config, pkgs, ... }:
 
-let
-  unstable = import
-    (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/nixos-unstable)
-    # reuse the current configuration
-    { config = config.nixpkgs.config; };
-
-in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -118,150 +111,15 @@ in
     hashedPassword= "W7Sq2X5x5b9.o";  
 };
 
-  home-manager.users.eyad = {pkgs, config, ...}:{ 
-    
-	programs.bash.enable = true;
-	programs.vscode.enable = true;
-    programs.htop.enable = true;
-    programs.command-not-found.enable = true;
-programs.vscode.extensions = [
-    pkgs.vscode-extensions.ms-python.python
-    pkgs.vscode-extensions.redhat.vscode-yaml
-    # pkgs.vscode-extensions.tyriar.sort-lines
-    # # pkgs.vscode-extensions.christian-kohler.path-intellisense
-    # pkgs.vscode-extensions.akamud.vscode-theme-onedark
-    # pkgs.vscode-extensions.mechatroner.rainbow-csv
-    # pkgs.vscode-extensions.shyykoserhiy.vscode-spotify
-    # pkgs.vscode-extensions.davidanson.vscode-markdownlint
-    # pkgs.vscode-extensions.donjayamanne.githistory
-    # pkgs.vscode-extensions.eamodio.gitlens
-    # pkgs.vscode-extensions.vscode-icons-team.vscode-icons
-    # pkgs.vscode-extensions.visualstudioexptteam.vscodeintellicode
-    # pkgs.vscode-extensions.ms-azuretools.vscode-docker
-    # pkgs.vscode-extensions.ms-vscode.powershell
-    # pkgs.vscode-extensions.ms-vsliveshare.vsliveshare
-    # pkgs.vscode-extensions.ms-vscode-remote.remote-ssh
-    # pkgs.vscode-extensions.ms-vscode-remote.remote-ssh-edit
-    # pkgs.vscode-extensions.waderyan.gitblame
-    # pkgs.vscode-extensions.kiteco.kite
-    # pkgs.vscode-extensions.dcasella.i3
-    # pkgs.vscode-extensions.teabyii.ayu
-    # pkgs.vscode-extensions.vscoss.vscode-ansible
-    # pkgs.vscode-extensions.pkief.material-icon-theme
+  home-manager.users.eyad = import ./home.nix;
 
-  ];
-	nixpkgs.config.allowUnfree = true;
-	xsession.enable = true;
-	
-	xsession.profileExtra = ''
-sxhkd &
-'';
-        xsession.scriptPath = ".hm-xsession";
-	xsession.windowManager.bspwm.enable = false;
-        xsession.windowManager.i3.enable = true;
-        xsession.windowManager.i3.package = pkgs.i3-gaps; 
-	
-	xsession.windowManager.i3.config = {
-	modifier = "Mod4";
-	keybindings = let modifier = "Mod4";
-	in lib.mkOptionDefault { "${modifier}+Return" = "exec kitty"; };
-
-};
-
-
-  home.packages = with pkgs; [
-    pkgs.firefox
-    pkgs.ncpamixer
-    pkgs.zoom-us
-    pkgs.dropbox
-    pkgs.micro
-    pkgs.jetbrains.idea-community
-    pkgs.slack
-    pkgs.bitwarden-cli
-    pkgs.sc-im
-    pkgs.skypeforlinux
-    pkgs.haxor-news
-    pkgs.cava
-    pkgs.spotify
-    pkgs.teamviewer
-    pkgs.xsv
-    pkgs.urlview
-    pkgs.urlscan
-    pkgs.s3cmd
-    pkgs.mycli
-    unstable.stig
-    pkgs.git
-    pkgs.gitAndTools.tig
-    pkgs.mpv
-    pkgs.teams
-    # pkgs.mpvScripts.mpris
-#    pkgs.mpvScripts.convert
-    # pkgs.plex-mpv-shim
-    pkgs.highlight
-    pkgs.docker
-    pkgs.docker-compose
-    pkgs.docker-ls
-    pkgs.nano
-    pkgs.nanorc
-    pkgs.maven
-    unstable.mopidy-youtube
-    pkgs.youtube-dl
-    pkgs.mpd-small
-    pkgs.ncmpcpp
-    pkgs.mopidy
-    pkgs.mopidy-spotify
-    pkgs.alacritty
-    pkgs.rofi
-    pkgs.nnn
-    pkgs.zathura
-    pkgs.pdftk
-    pkgs.unzip
-    pkgs.unrar
-    pkgs.fzf
-    pkgs.gtop
-    pkgs.gotop
-    pkgs.fff
-    pkgs.mpc_cli
-    pkgs.nitrogen
-    pkgs.sxhkd
-    pkgs.ncpamixer
-    pkgs.pavucontrol
-    pkgs.pulseaudio
-    pkgs.pulseaudio-ctl
-    pkgs.mc
-    pkgs.steam
-    pkgs.screenkey
-    pkgs.pywal
-    pkgs.wpgtk
-    pkgs.polybar
-    pkgs.screenkey
-    pkgs.bitwarden
-    pkgs.oh-my-zsh
-    pkgs.cointop
-    pkgs.lazygit
-    pkgs.pdfgrep
-    pkgs.terminal-parrot
-    pkgs.qutebrowser
-    pkgs.signal-desktop
-    pkgs.neomutt
-    pkgs.discord
-    pkgs.cmus
-    pkgs.termite
-    pkgs.feh
-    pkgs.git-crypt
-  ];
-  
-
-
-
-  
 #	services.sxhkd = {
 #		enable = true;
 #		keybindings = {
 #			"super + Return" = "kitty";
 #	};
  #     };
-  };
+
 
 
   # This value determines the NixOS release from which the default

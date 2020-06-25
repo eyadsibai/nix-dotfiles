@@ -1,20 +1,46 @@
-{ config, pkgs, ... }:
-
+{ lib, config, pkgs, ... }:
+let
+  unstable = import
+    (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/nixos-unstable)
+    # reuse the current configuration
+    { config = config.nixpkgs.config; };
+    in
 {
+  nixpkgs.config.allowUnfree = true;
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   programs.htop.enable = true;
-  nixpkgs.config.allowUnfree = true;
+  programs.bash.enable = true;
+  programs.command-not-found.enable = true;
+
+  xsession = {
+    enable = true;
+    profileExtra = ''
+                    sxhkd &
+                  '';
+    scriptPath = ".hm-xsession";
+    windowManager.bspwm.enable = false;
+    windowManager.i3.enable = true;
+    windowManager.i3.package = pkgs.i3-gaps; 
+    windowManager.i3.config = {
+	modifier = "Mod4";
+	keybindings = let modifier = "Mod4";
+	in lib.mkOptionDefault { "${modifier}+Return" = "exec kitty"; };
+
+};
+  };
 
 
   home.packages = [
+    pkgs.firefox
     pkgs.ncpamixer
     pkgs.zoom-us
     pkgs.dropbox
     pkgs.micro
     pkgs.jetbrains.idea-community
     pkgs.slack
-    # pkgs.python38Packages.rainbowstream # should create a different shell for it
+    pkgs.bitwarden-cli
     pkgs.sc-im
     pkgs.skypeforlinux
     pkgs.haxor-news
@@ -26,13 +52,11 @@
     pkgs.urlscan
     pkgs.s3cmd
     pkgs.mycli
-    pkgs.stig
+    unstable.stig
     pkgs.git
     pkgs.gitAndTools.tig
     pkgs.mpv
-    pkgs.mpvScripts.mpris
-    pkgs.mpvScripts.convert
-    pkgs.plex-mpv-shim
+    pkgs.teams
     pkgs.highlight
     pkgs.docker
     pkgs.docker-compose
@@ -40,13 +64,14 @@
     pkgs.nano
     pkgs.nanorc
     pkgs.maven
-    pkgs.mopidy-youtube
+    unstable.mopidy-youtube
     pkgs.youtube-dl
     pkgs.mpd-small
     pkgs.ncmpcpp
     pkgs.mopidy
     pkgs.mopidy-spotify
     pkgs.alacritty
+    pkgs.rofi
     pkgs.nnn
     pkgs.zathura
     pkgs.pdftk
@@ -84,10 +109,15 @@
     pkgs.termite
     pkgs.feh
     pkgs.git-crypt
+        # pkgs.mpvScripts.mpris
+#    pkgs.mpvScripts.convert
+    # pkgs.plex-mpv-shim
   ];
 
-  programs.vscode.enable = true;
-  programs.vscode.extensions = [
+
+  programs.vscode = {
+    enable = true;
+    extensions = [
     pkgs.vscode-extensions.ms-python.python
     pkgs.vscode-extensions.redhat.vscode-yaml
     # pkgs.vscode-extensions.tyriar.sort-lines
@@ -113,6 +143,8 @@
     # pkgs.vscode-extensions.pkief.material-icon-theme
 
   ];
+  };
+  
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
