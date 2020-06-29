@@ -14,7 +14,6 @@ let
 
   # programs with configs
   programs.htop.enable = true;
-  programs.bash.enable = true;
   programs.command-not-found.enable = true;
 
   xsession = {
@@ -255,6 +254,11 @@ let
   # paths it should manage.
   home.username = "eyad";
   home.homeDirectory = "/home/eyad";
+  home.sessionVariables = {
+    BROWSER = "/usr/bin/brave"
+      };
+
+  news.display = "silent"
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
