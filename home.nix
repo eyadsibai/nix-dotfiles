@@ -90,9 +90,7 @@ let
     pkgs.urlscan
     pkgs.s3cmd
     pkgs.mycli
-<<<<<<< Updated upstream
     unstable.stig
-=======
     pkgs.pyradio
     pkgs.termshark
     pkgs.slack-term
@@ -123,7 +121,6 @@ let
     pkgs.units
     pkgs.fdupes
     pkgs.arandr
->>>>>>> Stashed changes
     pkgs.git
     pkgs.gitAndTools.tig
     pkgs.mpv
@@ -181,11 +178,9 @@ let
     pkgs.termite
     pkgs.feh
     pkgs.git-crypt
-<<<<<<< Updated upstream
         # pkgs.mpvScripts.mpris
 #    pkgs.mpvScripts.convert
     # pkgs.plex-mpv-shim
-=======
     pkgs.kitty
     pkgs.gitter
     pkgs.flatpak
@@ -222,7 +217,6 @@ let
     pkgs.gitAndTools.grv
     pkgs.glances
     pkgs.pulsemixer
->>>>>>> Stashed changes
   ];
 
 
