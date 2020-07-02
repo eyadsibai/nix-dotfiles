@@ -12,6 +12,7 @@
         shortcut = "e";
         execution = "$EDITOR {file}";
       };
+      "ctrl-c" = { execution = ":quit"; };
       "create {subpath}" = { execution = "$EDITOR {directory}/{subpath}"; };
       "view" = { execution = "less {file}"; };
       "blop {name}\\.{type}" = {
