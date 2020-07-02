@@ -1,1 +1,1 @@
-programs.htop = {enable = true;}
+{ pkgs, lib, ... }: { programs.htop = { enable = true; }; }

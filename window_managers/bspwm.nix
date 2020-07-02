@@ -1,3 +1,1 @@
-xsession.windowManager.bspwm = {
-    enable = true;
-}
+{ pkgs, lib, ... }: { xsession.windowManager.bspwm = { enable = true; }; }

@@ -7,7 +7,7 @@
 
     config = rec {
       modifier = "Mod4";
-      bars = [];
+      bars = [ ];
 
       window.border = 0;
 
@@ -37,12 +37,14 @@
         }
 
         {
-          command = "${pkgs.bash}/bin/bash ~/screens.sh"; # TODO: Check if exists
+          command =
+            "${pkgs.bash}/bin/bash ~/screens.sh"; # TODO: Check if exists
           always = true;
         }
 
         {
-          command = "${pkgs.feh}/bin/feh --bg-scale ~/background.jpg"; # TODO: fetch background from URL
+          command =
+            "${pkgs.feh}/bin/feh --bg-scale ~/background.jpg"; # TODO: fetch background from URL
           always = true;
           notification = false;
         }

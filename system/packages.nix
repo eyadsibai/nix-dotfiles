@@ -9,12 +9,7 @@
     tlp.enable = true;
     blueman.enable = true;
   };
- environment.systemPackages = with pkgs; [
-    kitty
-    git
-    sxhkd
-  ];
-
+  environment.systemPackages = with pkgs; [ kitty git sxhkd ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
