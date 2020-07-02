@@ -21,8 +21,8 @@
   hardware.enableRedistributableFirmware = true; # NOTE: required for wireless card
 
   # networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;
+  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  #networking.networkmanager.enable = true;
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -76,6 +76,16 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+ networking.wireless.networks."centiro-private-wlan" = {
+    auth = ''
+      key_mgmt=WPA-EAP
+      eap=PEAP
+      identity="eyada@centiro.se"
+      password=""
+      phase1="peaplabel=2"
+      phase2="auth=MSCHAPV2"
+    '';
+  };
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
