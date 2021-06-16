@@ -23,14 +23,7 @@ in {
     windowManager.bspwm.enable = false;
   };
 
-  programs.newsboat.enable = true;
-  programs.feh.enable = true;
-  programs.fzf.enable = true;
-  programs.git.enable = true;
-  programs.gpg.enable = true;
-  programs.jq.enable = true;
-  programs.kitty.enable = true;
-  programs.lf.enable = true;
+
   # programs.lieer.enable = true;
   # programs.lsd.enable = true;
 
